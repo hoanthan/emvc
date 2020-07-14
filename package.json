@@ -1,6 +1,6 @@
 {
-  "name": "@gitts/core",
-  "version": "0.0.3",
+  "name": "emvc",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,45 +8,34 @@
     "dist/"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "start": "tsc --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.com:git17/git-core.git"
+    "url": "git@github.com:hoanthan/emvc.git"
   },
   "publishConfig": {
     "access": "public"
   },
-  "author": "GIT",
+  "author": "Hoan Than",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/git17/git-core/issues"
+    "url": "https://github.com/hoanthan/emvc/issues"
   },
-  "homepage": "https://gitlab.com/git17/git-core#readme",
+  "homepage": "https://github.com/hoanthan/emvc",
   "devDependencies": {
-    "typescript": "3.3.3333"
-  },
-  "dependencies": {
-    "@types/cors": "~2.8.6",
+    "typescript": "3.3.3333",
     "@types/dotenv": "~8.2.0",
     "@types/express": "~4.17.2",
-    "@types/glob": "~7.1.1",
-    "@types/helmet": "~0.0.45",
-    "@types/moment": "^2.13.0",
-    "@types/morgan": "~1.7.37",
-    "@types/winston": "^2.4.4",
-    "cors": "~2.8.5",
+    "@types/glob": "~7.1.1"
+  },
+  "dependencies": {
     "dotenv": "^8.2.0",
     "express": "~4.17.1",
     "glob": "~7.1.6",
-    "helmet": "~3.21.2",
-    "moment": "^2.24.0",
-    "morgan": "~1.9.1",
-    "reflect-metadata": "~0.1.10",
-    "typeorm": "^0.2.20",
-    "winston": "^3.2.1"
+    "reflect-metadata": "~0.1.10"
   },
-  "keywords": []
+  "keywords": ["Express", "MVC", "Node", "Typescript", "Decorators"]
 }

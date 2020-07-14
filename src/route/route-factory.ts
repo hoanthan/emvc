@@ -9,8 +9,8 @@ export function getControllerPaths() {
     return _controllers
 }
 
-const configControllerRoutes = (router, modulePath) => module => {
-    let Controller;
+const configControllerRoutes = (router: Router, modulePath: string) => (module: { [x: string]: any }) => {
+    let Controller: any;
     let controllerPath = ''
     Object.keys(module).forEach(key => {
         let exportMember = module[key]
@@ -47,7 +47,7 @@ export const createRoutes = async (router?: Router) => {
     const promises: Promise<void>[] = []
 
     allFilePaths.forEach(path => {
-        promises.push(import(path).then(configControllerRoutes(router, path)))
+        promises.push(import(path).then(configControllerRoutes(router!, path)))
     })
 
     await Promise.all(promises).catch(console.error)

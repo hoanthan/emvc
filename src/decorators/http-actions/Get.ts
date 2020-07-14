@@ -1,7 +1,7 @@
 import { RouteDefinition, HTTPActionOptions } from "../http-actions"
 
 export const Get = (options: HTTPActionOptions): MethodDecorator => {
-    return (target, propertyKey: string): void => {
+    return (target, propertyKey: string | symbol): void => {
         // init routes metadata if not exist
         if (!Reflect.hasMetadata('routes', target.constructor))
             Reflect.defineMetadata('routes', [], target.constructor)
@@ -11,7 +11,7 @@ export const Get = (options: HTTPActionOptions): MethodDecorator => {
         routes.push({
             requestMethod: 'get',
             path: options.path,
-            methodName: propertyKey,
+            methodName: propertyKey as any,
             middlewares: options.middlewares
         })
         // update routes metadata
