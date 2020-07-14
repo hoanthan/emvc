@@ -1,14 +1,14 @@
-import { TargetType } from "."
+import { MetadataNames, TargetType } from "./interfaces"
 
 export const Controller = (prefix: string = '') => {
     return (target: any) => {
         // define the prefix url to the controller
-        Reflect.defineMetadata('prefix', prefix, target)
+        Reflect.defineMetadata(MetadataNames.Prefix, prefix, target)
         // define the class as a controller
-        Reflect.defineMetadata('targetType', TargetType.Controller, target)
+        Reflect.defineMetadata(MetadataNames.TargetType, TargetType.Controller, target)
         // check if controller has any routes
-        if (!Reflect.hasMetadata('routes', target)) {
-            Reflect.defineMetadata('routes', [], target)
+        if (!Reflect.hasMetadata(MetadataNames.Routes, target)) {
+            Reflect.defineMetadata(MetadataNames.Routes, [], target)
         }
     }
 }

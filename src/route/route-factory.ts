@@ -1,33 +1,31 @@
-import { Router } from "express-serve-static-core"
 import { Router as RouterFn } from "express"
-import { TargetType, RouteDefinition } from "../decorators"
-import { getAllFilePaths } from "../common/paths"
+import { Router } from "express-serve-static-core"
+import { getAllControllerPaths } from "../common/paths"
+import { MetadataNames, RouteDefinition, TargetType } from "../decorators"
 
 const _controllers: any[] = []
-
-export function getControllerPaths() {
-    return _controllers
-}
 
 const configControllerRoutes = (router: Router, modulePath: string) => (module: { [x: string]: any }) => {
     let Controller: any;
     let controllerPath = ''
     Object.keys(module).forEach(key => {
         let exportMember = module[key]
-        if (Reflect.getMetadata('targetType', exportMember) === TargetType.Controller) {
+        if (Reflect.getMetadata(MetadataNames.TargetType, exportMember) === TargetType.Controller) {
             Controller = exportMember
             controllerPath = modulePath
         }
     })
     if (!Controller) return
     const instance = new Controller()
-    const prefix = Reflect.getMetadata('prefix', Controller)
-    const routes: Array<RouteDefinition> = Reflect.getMetadata('routes', Controller)
+    const prefix = Reflect.getMetadata(MetadataNames.Prefix, Controller)
+    const routes: Array<RouteDefinition> = Reflect.getMetadata(MetadataNames.Routes, Controller)
 
     routes.forEach(route => {
         route.middlewares = route.middlewares || []
         router[route.requestMethod](prefix + route.path, ...route.middlewares, instance[route.methodName].bind(instance))
     })
+
+    console.info('Controller: ', Controller.name, '- Routes:', routes)
 
     _controllers.push({
         path: controllerPath,
@@ -42,11 +40,11 @@ export const createRoutes = async (router?: Router) => {
 
     let allFilePaths = []
 
-    allFilePaths = await getAllFilePaths()
+    allFilePaths = await getAllControllerPaths();
 
     const promises: Promise<void>[] = []
 
-    allFilePaths.forEach(path => {
+    allFilePaths.forEach((path) => {
         promises.push(import(path).then(configControllerRoutes(router!, path)))
     })
 

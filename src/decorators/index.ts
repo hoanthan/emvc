@@ -1,7 +1,4 @@
-export * from './Controller'
-export * from './http-actions'
-
-export enum TargetType {
-    Controller = 'CONTROLLER',
-    Injectable = 'INJECTABLE'
-}
+export * from './Controller';
+export * from './http-actions';
+export * from './interfaces';
+export * from './Service';
