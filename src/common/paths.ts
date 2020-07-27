@@ -6,11 +6,11 @@ let _controllerDir: string | undefined = undefined;
 let _serviceDir: string | undefined = undefined;
 
 export const setServiceDir = (value: string) => {
-    _serviceDir = value;
+    _serviceDir = `${value}${value.endsWith('/') ? '**/*.js' : '/**/*.js'}`;
 }
 
 export const setControllerDir = (value: string) => {
-    _controllerDir = value;
+    _controllerDir = `${value}${value.endsWith('/') ? '**/*.js' : '/**/*.js'}`;
 }
 
 export const getAllControllerPaths = () => new Promise<string[]>((rs, rj) => {

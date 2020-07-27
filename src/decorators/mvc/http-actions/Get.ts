@@ -1,7 +1,7 @@
-import { MetadataNames } from "../interfaces"
+import { MetadataNames } from "../../interfaces"
 import { HTTPActionOptions, RouteDefinition } from "./interfaces"
 
-export const Put = (options: HTTPActionOptions): MethodDecorator => {
+export const Get = (options: HTTPActionOptions): MethodDecorator => {
     return (target, propertyKey: string | symbol): void => {
         // init routes metadata if not exist
         if (!Reflect.hasMetadata(MetadataNames.Routes, target.constructor))
@@ -10,7 +10,7 @@ export const Put = (options: HTTPActionOptions): MethodDecorator => {
         const routes = Reflect.getMetadata(MetadataNames.Routes, target.constructor) as Array<RouteDefinition>
         // push new route
         routes.push({
-            requestMethod: 'put',
+            requestMethod: 'get',
             path: options.path,
             methodName: propertyKey as any,
             middlewares: options.middlewares

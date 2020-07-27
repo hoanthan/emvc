@@ -1,4 +1,4 @@
-import { MetadataNames, TargetType } from "./interfaces"
+import { MetadataNames, TargetType } from "../interfaces"
 
 export const Controller = (prefix: string = '') => {
     return (target: any) => {

@@ -11,5 +11,6 @@ export enum MetadataNames {
     TargetType = 'targetType',
     Prefix = 'prefix',
     Routes = 'routes',
-    ServiceProvidedIn = '_serviceProvidedIn'
+    ServiceProvidedIn = 'serviceProvidedIn',
+    ServiceSymbol = 'serviceSymbol',
 }

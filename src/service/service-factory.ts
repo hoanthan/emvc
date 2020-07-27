@@ -5,7 +5,7 @@ const registerService = (module: { [x: string]: any }) => {
     Object.keys(module).forEach(key => {
         let exportMember = module[key]
         if (Reflect.getMetadata(MetadataNames.TargetType, exportMember) === TargetType.Service) {
-            console.log('Service: ', exportMember);
+            console.log('Service: ', exportMember.name);
         }
     })
 }

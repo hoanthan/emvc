@@ -1,4 +1,4 @@
-import { MetadataNames } from "../interfaces"
+import { MetadataNames } from "../../interfaces"
 import { HTTPActionOptions, RouteDefinition } from "./interfaces"
 
 export const Post = (options: HTTPActionOptions): MethodDecorator => {
