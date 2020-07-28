@@ -13,7 +13,8 @@ export const Get = (options: HTTPActionOptions): MethodDecorator => {
             requestMethod: 'get',
             path: options.path,
             methodName: propertyKey as any,
-            middlewares: options.middlewares
+            middlewares: options.middlewares,
+            nextFunctions: options.nextFunctions,
         })
         // update routes metadata
         Reflect.defineMetadata(MetadataNames.Routes, routes, target.constructor)

@@ -21,8 +21,9 @@ const configControllerRoutes = (router: Router, modulePath: string) => (module: 
     const routes: Array<RouteDefinition> = Reflect.getMetadata(MetadataNames.Routes, Controller)
 
     routes.forEach(route => {
-        route.middlewares = route.middlewares || []
-        router[route.requestMethod](prefix + route.path, ...route.middlewares, instance[route.methodName].bind(instance))
+        route.middlewares = route.middlewares || [];
+        route.nextFunctions = route.nextFunctions || [];
+        router[route.requestMethod](prefix + route.path, ...route.middlewares, instance[route.methodName].bind(instance), ...route.nextFunctions)
     })
 
     console.info('Controller: ', Controller.name, '- Routes:', routes)

@@ -3,6 +3,7 @@ import 'reflect-metadata'
 import { setControllerDir, setServiceDir } from './common/paths'
 config()
 export * from './decorators'
+export * from './helpers'
 export * from './route'
 export * from './service'
 

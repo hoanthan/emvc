@@ -13,7 +13,8 @@ export const Put = (options: HTTPActionOptions): MethodDecorator => {
             requestMethod: 'put',
             path: options.path,
             methodName: propertyKey as any,
-            middlewares: options.middlewares
+            middlewares: options.middlewares,
+            nextFunctions: options.nextFunctions
         })
         // update routes metadata
         Reflect.defineMetadata(MetadataNames.Routes, routes, target.constructor)
