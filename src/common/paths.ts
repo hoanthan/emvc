@@ -1,30 +1,32 @@
-import glob from 'glob';
+import glob from "glob";
 
-export const cwd = process.cwd()
+export const cwd = process.cwd();
 
-let _controllerDir: string | undefined = undefined;
-let _serviceDir: string | undefined = undefined;
+let _controllerGlob: string | undefined = undefined;
+let _serviceGlob: string | undefined = undefined;
 
-export const setServiceDir = (value: string) => {
-    _serviceDir = `${value}${value.endsWith('/') ? '**/*.js' : '/**/*.js'}`;
-}
+export const setServiceGlob = (value: string) => {
+  _serviceGlob = value;
+};
 
-export const setControllerDir = (value: string) => {
-    _controllerDir = `${value}${value.endsWith('/') ? '**/*.js' : '/**/*.js'}`;
-}
+export const setControllerGlob = (value: string) => {
+  _controllerGlob = value;
+};
 
-export const getAllControllerPaths = () => new Promise<string[]>((rs, rj) => {
-    if (!_controllerDir) return rs([]);
-    glob(_controllerDir, (err, files) => {
-        if (err) return rj(err)
-        rs(files)
-    })
-})
+export const getAllControllerPaths = () =>
+  new Promise<string[]>((rs, rj) => {
+    if (!_controllerGlob) return rs([]);
+    glob(_controllerGlob, (err, files) => {
+      if (err) return rj(err);
+      rs(files);
+    });
+  });
 
-export const getAllServicePaths = () => new Promise<string[]>((rs, rj) => {
-    if (!_serviceDir) return rs([]);
-    glob(_serviceDir, (err, files) => {
-        if (err) return rj(err)
-        rs(files)
-    })
-})
+export const getAllServicePaths = () =>
+  new Promise<string[]>((rs, rj) => {
+    if (!_serviceGlob) return rs([]);
+    glob(_serviceGlob, (err, files) => {
+      if (err) return rj(err);
+      rs(files);
+    });
+  });

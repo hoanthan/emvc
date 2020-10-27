@@ -1,22 +1,22 @@
-import { config } from 'dotenv'
-import 'reflect-metadata'
-import { setControllerDir, setServiceDir } from './common/paths'
-config()
-export * from './decorators'
-export * from './helpers'
-export * from './route'
-export * from './service'
+import { config } from "dotenv";
+import "reflect-metadata";
+import { setControllerGlob, setServiceGlob } from "./common/paths";
+config();
+export * from "./decorators";
+export * from "./helpers";
+export * from "./route";
+export * from "./service";
 
 export interface EMVCConfigs {
-    controllerDir?: string;
-    serviceDir?: string;
+  controllers?: string;
+  services?: string;
 }
 
 const EMVC = {
-    config({ controllerDir, serviceDir }: EMVCConfigs) {
-        if (controllerDir) setControllerDir(controllerDir);
-        if (serviceDir) setServiceDir(serviceDir);
-    }
-}
+  config({ controllers, services }: EMVCConfigs) {
+    if (controllers) setControllerGlob(controllers);
+    if (services) setServiceGlob(services);
+  },
+};
 
 export default EMVC;
