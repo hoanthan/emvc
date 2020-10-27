@@ -2,6 +2,7 @@ import { config } from "dotenv";
 import "reflect-metadata";
 import { setControllerGlob, setServiceGlob } from "./common/paths";
 config();
+export * from "./containers";
 export * from "./decorators";
 export * from "./helpers";
 export * from "./route";
