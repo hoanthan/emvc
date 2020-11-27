@@ -46,7 +46,9 @@ const configControllerRoutes = (
     "- Routes:",
     routes.map((route) => ({
       ...route,
-      middlewares: route.middlewares?.map((middleware) => middleware.name),
+      middlewares:
+        route.middlewares &&
+        route.middlewares.map((middleware) => middleware.name),
     }))
   );
 
