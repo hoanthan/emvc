@@ -123,7 +123,7 @@ That's it! Try running your application, if you call `[GET] http://localhost:300
 
 #### @Controller
 
-- Defines a controller (as the `M` in `MVC` model) with a root path to access its actions. This root path will be combined with actions' route to define their full routes. For example, User Controller with `/users` as its root path, it has `getAll` method which lists all users. This action is registered with `@Get({ path: '/' })`. When you run the application, the list all users API will be served at `{domain}/users`.
+- Defines a controller (as the `C` in `MVC` model) with a root path to access its actions. This root path will be combined with actions' route to define their full routes. For example, User Controller with `/users` as its root path, it has `getAll` method which lists all users. This action is registered with `@Get({ path: '/' })`. When you run the application, the list all users API will be served at `{domain}/users`.
 
 Parameters
 | Parameter | Required | Default |
