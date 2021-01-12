@@ -121,7 +121,7 @@ That's it! Try running your application, if you call `[GET] http://localhost:300
 
 ### Controller Registrator
 
-#### Controller
+#### @Controller
 
 - Defines a controller (as the `M` in `MVC` model) with a root path to access its actions. This root path will be combined with actions' route to define their full routes. For example, User Controller with `/users` as its root path, it has `getAll` method which lists all users. This action is registered with `@Get({ path: '/' })`. When you run the application, the list all users API will be served at `{domain}/users`.
 
@@ -132,23 +132,23 @@ Parameters
 
 ### HTTP Actions
 
-#### Get
+#### @Get
 
 - Defines a GET request handler
 
-#### Post
+#### @Post
 
 - Defines a POST request handler
 
-#### Patch
+#### @Patch
 
 - Defines a PATCH request handler
 
-#### Put
+#### @Put
 
 - Defines a PUT request handler
 
-#### Delete
+#### @Delete
 
 - Defines a DELETE request handler
 
