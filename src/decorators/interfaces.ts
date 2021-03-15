@@ -5,6 +5,7 @@ export enum TargetType {
 
 export interface ServiceDecoratorParams {
     provideIn?: string
+    singleton?: boolean
 }
 
 export enum MetadataNames {

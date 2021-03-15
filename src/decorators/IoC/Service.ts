@@ -7,7 +7,8 @@ const createServiceSymbol = (containerName: string, name: string) => {
 }
 
 export function Service<Interface = any>({
-    provideIn = 'root'
+    provideIn = 'root',
+    singleton = false
 }: ServiceDecoratorParams = {
         provideIn: 'root'
     }): ClassDecorator {
@@ -21,6 +22,7 @@ export function Service<Interface = any>({
         }
         const ServiceType = createServiceSymbol(provideIn, target.name);
         Reflect.defineMetadata(MetadataNames.ServiceSymbol, ServiceType, target);
-        container.bind<Interface>(ServiceType).to(target);
+        const bind = container.bind<Interface>(ServiceType).to(target);
+        if(singleton) bind.inSingletonScope();
     }
 }
