@@ -14,4 +14,5 @@ export enum MetadataNames {
     Routes = 'routes',
     ServiceProvidedIn = 'serviceProvidedIn',
     ServiceSymbol = 'serviceSymbol',
+    ControllerOptions = 'controllerOptions'
 }

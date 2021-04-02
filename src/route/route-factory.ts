@@ -1,4 +1,4 @@
-import { Router as RouterFn } from "express";
+import { RequestHandler, Router as RouterFn } from "express";
 import { Router } from "express-serve-static-core";
 import { getAllControllerPaths } from "../common/paths";
 import { MetadataNames, RouteDefinition, TargetType } from "../decorators";
@@ -28,6 +28,12 @@ const configControllerRoutes = (
     MetadataNames.Routes,
     Controller
   );
+  const options: {
+    middlewares?: RequestHandler[],
+    nextFunctions?: RequestHandler[],
+  } | undefined = Reflect.getMetadata(MetadataNames.ControllerOptions, Controller);
+
+  if(options && options.middlewares) router.use(...options.middlewares)
 
   routes.forEach((route) => {
     route.middlewares = route.middlewares || [];
@@ -40,16 +46,22 @@ const configControllerRoutes = (
     );
   });
 
+  if(options && options.nextFunctions) router.use(...options.nextFunctions)
+
   console.info(
     "Controller: ",
     Controller.name,
+    "Middlewares: ",
+    options && options.middlewares && options.middlewares.map(middleware => middleware.name) || [],
     "- Routes:",
     routes.map((route) => ({
       ...route,
       middlewares:
         route.middlewares &&
         route.middlewares.map((middleware) => middleware.name),
-    }))
+    })),
+    "Next: ",
+    options && options.nextFunctions && options.nextFunctions.map(next => next.name) || []
   );
 
   _controllers.push({
